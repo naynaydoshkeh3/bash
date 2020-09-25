@@ -8,8 +8,17 @@ process.stdin.on('data', (data) => {
 
     if (cmd === 'pwd') {
         let pwdFunc = require('./pwd');
-        pwd(cmd);
-    } else {
+        //console.log(pwdFunc())
+        pwdFunc(cmd);
+    } else if (cmd === 'ls') {
+        let lsFunc = require('./ls');
+        lsFunc(cmd)
+    } else if (cmd.slice(0, 3) === 'cat'){
+        let fileName = cmd.slice(4)
+        let catFunc = require('./cat');
+        catFunc(fileName)
+    } 
+    else {
        process.stdout.write('You typed: ' + cmd);
        process.stdout.write('\nprompt > ') 
     }
